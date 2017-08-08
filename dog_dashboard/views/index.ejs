@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Dogs</h1>
+    <br>
+    <a href="/dogs/new">Add New Dog</a>
+    <hr>
+    <% for (var i in dogs) { %>
+        <p>Name: <%= dogs[i].name %></p>
+        <p>Breed: <%= dogs[i].breed %></p>
+        <p>Color: <%= dogs[i].color %></p>
+        <p>Favorite Food: <%= dogs[i].fav_food %></p>
+        <a href="/dogs/<%= dogs[i]._id %>">See this dog's page.</a><br>
+        <a href="/dogs/edit/<%= dogs[i]._id %>">Edit this dog's info.</a><br>
+        <a href="/dogs/delete/<%= dogs[i]._id %>">Delete this dog's info.</a>
+        <hr>
+    <% } %>
+</body>
+</html>
