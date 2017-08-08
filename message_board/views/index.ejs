@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>The Dojo Message Board</h1>
+    <hr>
+
+    <form action="/add_message" method="post">
+        Name: <input type="text" name="name"><br>
+        Message: <br>
+        <textarea name="message_content" id="" cols="30" rows="10"></textarea><br>
+        <input type="submit" value="Post message">
+    </form>
+    <hr>
+
+    <% if (messages) { %>
+
+        <% for (var i in messages) { %>
+
+            <h2><%= messages[i].message_poster %> says:</h2>
+            <h3><%= messages[i].message_content %></h3>
+
+            <% if (messages[i].comments.length > 0) { %>
+
+                <h4>Comments:</h4><br>
+
+                 <% for (var j in messages[i].comments) { %>
+
+                    <%= messages[i]['comments'][j] %>
+                    
+                    <!-- <p><%= messages[i].comments[j].comment_poster %> replied: <%= messages[i].comments[j].comment_content %></p> -->
+                    <!-- <p><%= messages[i].comments[j].comment_content %></p> -->
+
+                <% } %> 
+
+                
+
+            <% } %>
+
+            <form action="/add_comment/<%= messages[i]._id %>" method="post">
+                Name: <input type="text" name="commentor"><br>
+                Comment: <br>
+                <textarea name="comment_content" id="" cols="30" rows="10"></textarea><br>
+                <input type="submit" value="Post message">
+            </form>
+
+            <hr>
+
+
+        <% } %>
+    
+    <% } %>
+
+</body>
+</html>
